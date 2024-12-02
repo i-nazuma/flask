@@ -15,24 +15,24 @@ Make sure you have the following installed:
 
 2. Navigate to the project directory in your terminal:
    ```bash
-   cd flask_project```
+cd flask_project```
 
 3. (Optional but recommended) Create a virtual environment:
     ```bash
-python -m venv venv```
+python -m venv venv ```
 
 4. Activate the virtual environment:
 
 - On Windows:
-```bash
-.\venv\Scripts\activate```
+    ```bash
+.\venv\Scripts\activate ```
 - On macOS/Linux:
-```bash
+    ```bash
 source venv/bin/activate```
 
 5. Install the required dependencies:
 
-```bash
+    ```bash
 pip install flask```
 
 ## Running the Application
@@ -40,5 +40,5 @@ pip install flask```
 1. Ensure you are in the project directory and the virtual environment is activated.
 
 2. Start the Flask application:
-```bash
+    ```bash
 python app.py```
