@@ -1,9 +1,7 @@
-# HOW TO: run the application
-
+# How to run the application
 This is a pretty basic Flask application.
 
 ## Prerequisites
-
 Make sure you have the following installed:
 
 - Python 3.7 or later
@@ -15,30 +13,30 @@ Make sure you have the following installed:
 
 2. Navigate to the project directory in your terminal:
    ```bash
-cd flask_project```
+    cd flask_project
 
 3. (Optional but recommended) Create a virtual environment:
     ```bash
-python -m venv venv ```
+    python -m venv venv
 
 4. Activate the virtual environment:
 
 - On Windows:
     ```bash
-.\venv\Scripts\activate ```
+    .\venv\Scripts\activate
 - On macOS/Linux:
     ```bash
-source venv/bin/activate```
+    source venv/bin/activate
 
 5. Install the required dependencies:
 
     ```bash
-pip install flask```
+    pip install flask
 
 ## Running the Application
 
-1. Ensure you are in the project directory and the virtual environment is activated.
+1. Ensure you are in the project directory and the virtual environment is activated
 
 2. Start the Flask application:
     ```bash
-python app.py```
+    python app.py
