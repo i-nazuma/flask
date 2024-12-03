@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t flask-app:${{ github.ref }} .
+          docker build -t flask-app:${{ github.sha }} .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -28,5 +28,5 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker tag flask-app:${{ github.ref }} ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.ref }}
-          docker push your-dockerhub-username/flask-app:${{ github.ref }}
+          docker tag flask-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.sha }}
+          docker push your-dockerhub-username/flask-app:${{ github.sha }}
