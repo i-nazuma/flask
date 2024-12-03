@@ -29,4 +29,4 @@ jobs:
       - name: Push Docker Image
         run: |
           docker tag flask-app:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.sha }}
-          docker push your-dockerhub-username/flask-app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:${{ github.sha }}
