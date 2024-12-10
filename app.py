@@ -13,7 +13,9 @@ def index():
     temperature = sensor_data.get('temperature')
     humidity = sensor_data.get('humidity')
     return render_template(
-    'index.html', temperature=temperature, humidity=humidity
+    'index.html',
+    temperature=temperature,
+    humidity=humidity
 )
 
 
