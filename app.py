@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 app.config['MQTT_BROKER_URL'] = '192.168.8.106'
 app.config['MQTT_BROKER_PORT'] = 1883
-app.config['MQTT_KEEPALIVE'] = 5 
-app.config['MQTT_TLS_ENABLED'] = False  
+app.config['MQTT_KEEPALIVE'] = 5
+app.config['MQTT_TLS_ENABLED'] = False
 topic = '/sensors/#'
 
 mqtt_client = Mqtt(app)
@@ -35,8 +35,9 @@ def handle_mqtt_message(client, userdata, message):
         topic=message.topic,
         payload=message.payload.decode()
     )
-    messages.append(data)  
+    messages.append(data)
     print(f"Received message: {data}")
+
 
 @app.route('/publish', methods=['GET'])
 def view_messages():
@@ -54,8 +55,8 @@ def view_messages():
                 <th>Payload</th>
             </tr>
             {
-                messages_html 
-                if messages 
+                messages_html
+                if messages
                 else '<tr><td colspan="2">No messages yet</td></tr>'
             }
         </table>
@@ -65,4 +66,4 @@ def view_messages():
 
 
 if __name__ == '__main__':
-   app.run(host='127.0.0.1', port=5000)
+    app.run(host='127.0.0.1', port=5000)
