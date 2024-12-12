@@ -5,7 +5,7 @@ WORKDIR /flask
 
 # copy code
 COPY . .
-RUN pip install --no-cache-dir flask
+RUN pip install --no-cache-dir flask flask_mqtt
 
 ENV FLASK_APP=app.py
 
