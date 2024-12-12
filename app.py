@@ -13,6 +13,7 @@ topic = '/sensors/#'
 
 mqtt_client = Mqtt(app)
 
+messages = []
 
 @mqtt_client.on_connect()
 def handle_connect(client, userdata, flags, rc):
@@ -25,18 +26,46 @@ def handle_connect(client, userdata, flags, rc):
 
 @mqtt_client.on_message()
 def handle_mqtt_message(client, userdata, message):
-   data = dict(
-       topic=message.topic,
-       payload=message.payload.decode()
-  )
-   print('Received message on topic: {topic} with payload: {payload}'.format(**data))
+    data = dict(
+        topic=message.topic,
+        payload=message.payload.decode()
+    )
+    messages.append(data)  
+    print('Received message on topic: {topic} with payload: {payload}'.format(**data))
+    
+@app.route('/')
+def index():
+    return '''
+        <h1>Welcome to the Flask MQTT application!</h1>
+        <p><a href="/publish">Go to Publish</a></p>
+    '''
 
+@mqtt_client.on_message()
+def handle_mqtt_message(client, userdata, message):
+    data = dict(
+        topic=message.topic,
+        payload=message.payload.decode()
+    )
+    messages.append(data)  
+    print(f"Received message: {data}")
 
-@app.route('/publish', methods=['POST'])
-def publish_message():
-   request_data = request.get_json()
-   publish_result = mqtt_client.publish(request_data['topic'], request_data['msg'])
-   return jsonify({'code': publish_result[0]})
+@app.route('/publish', methods=['GET'])
+def view_messages():
+    messages_html = ''.join(
+        f'<tr><td>{msg["topic"]}</td><td>{msg["payload"]}</td></tr>' for msg in messages
+    )
+    html = f'''
+        <h1>Subscribed Data</h1>
+        <table border="1">
+            <tr>
+                <th>Topic</th>
+                <th>Payload</th>
+            </tr>
+            {messages_html if messages else '<tr><td colspan="2">No messages yet</td></tr>'}
+        </table>
+        <p><a href="/">Back to Home</a></p>
+    '''
+    return html
 
 if __name__ == '__main__':
    app.run(host='127.0.0.1', port=5000)
