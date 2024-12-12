@@ -13,6 +13,7 @@ mqtt_client = Mqtt(app)
 
 messages = []
 
+
 @mqtt_client.on_connect()
 def handle_connect(client, userdata, flags, rc):
     if rc == 0:
@@ -28,6 +29,7 @@ def index():
         <h1>Welcome to the Flask MQTT application!</h1>
         <p><a href="/publish">Go to Publish</a></p>
     '''
+
 
 @mqtt_client.on_message()
 def handle_mqtt_message(client, userdata, message):
